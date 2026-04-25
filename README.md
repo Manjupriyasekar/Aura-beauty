@@ -17,7 +17,7 @@ Aura Beauty is a modern beauty website designed using HTML, CSS, and JavaScript.
 - PostgreSQL
 
 ## 🌐 Live Demo
-https://manjupriyasekar.github.io/aura-beauty/
+ https://manjupriyasekar.github.io/Aura-beauty/
 
 ## 📷 Screenshots
 (Add your screenshots here)
