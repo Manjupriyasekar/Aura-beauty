@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Beauty | Authentic Cosmetics</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --ink: #1a0b2e;
+  --gold: #c9973a;
+  --rose: #e8556d;
+  --cream: #fffdf9;
+  --light: #f7f3ee;
+  --border: #ede8e0;
+  --white: #ffffff;
+  --muted: #9b8fa0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: #222; }
+
+/* ════════════════ HEADER ════════════════ */
+header {
+  position: fixed; top: 0; width: 100%;
+  background: rgba(255,253,249,0.97);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000; height: 68px;
+  display: flex; align-items: center;
+  padding: 0 3%; gap: 16px;
+}
+.logo {
+  font-family: 'Playfair Display'; font-size: 22px;
+  color: var(--ink); text-decoration: none; white-space: nowrap;
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--gold); }
+
+.search-wrap {
+  flex: 1; max-width: 500px;
+  position: relative; display: flex; align-items: center;
+}
+.search-wrap .s-icon {
+  position: absolute; left: 14px;
+  color: var(--muted); font-size: 13px; pointer-events: none;
+}
+.search-wrap input {
+  width: 100%; height: 42px;
+  padding: 0 42px 0 38px;
+  border-radius: 30px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 13.5px; font-family: 'DM Sans', sans-serif;
+  color: #222; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-wrap input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,151,58,0.1);
+}
+.search-wrap input::placeholder { color: var(--muted); }
+.clear-btn {
+  position: absolute; right: 12px;
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 13px; display: none;
+  padding: 4px;
+}
+.clear-btn:hover { color: #333; }
+
+.suggestions {
+  position: absolute; top: 48px; left: 0; right: 0;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 12px 40px rgba(26,11,46,0.12);
+  display: none; z-index: 999;
+}
+.sug-header {
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between;
+  align-items: center;
+}
+.sug-header span { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.sug-list { max-height: 230px; overflow-y: auto; }
+.sug-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; font-size: 13.5px; cursor: pointer;
+  border-bottom: 1px solid #faf8f5;
+  transition: background 0.15s;
+}
+.sug-item:hover { background: var(--light); }
+.sug-item i { color: var(--muted); font-size: 12px; flex-shrink: 0; }
+.sug-match { color: var(--gold); font-weight: 600; }
+.sug-empty { padding: 20px 16px; font-size: 13px; color: var(--muted); }
+
+.hdr-right { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.icon-btn {
+  position: relative; width: 40px; height: 40px;
+  border-radius: 10px; background: var(--light);
+  border: 1px solid var(--border); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink); font-size: 16px; transition: 0.2s;
+}
+.icon-btn:hover { background: var(--border); }
+.badge {
+  position: absolute; top: -5px; right: -5px;
+  background: var(--rose); color: #fff;
+  font-size: 9px; font-weight: 700;
+  min-width: 17px; height: 17px;
+  border-radius: 10px; padding: 0 4px;
+  display: none; align-items: center; justify-content: center;
+}
+.hdr-btn {
+  display: flex; align-items: center; gap: 6px;
+  height: 38px; padding: 0 16px;
+  border-radius: 9px; border: 1.5px solid var(--border);
+  background: transparent; color: var(--ink);
+  font-size: 13px; font-weight: 500;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+  text-decoration: none; transition: 0.2s;
+}
+.hdr-btn:hover { border-color: var(--ink); }
+.hdr-btn-fill {
+  background: var(--ink); color: #fff;
+  border-color: var(--ink);
+}
+.hdr-btn-fill:hover { background: #2d1a50; }
+
+/* ════════════════ HERO ════════════════ */
+.hero {
+  margin-top: 68px;
+  background: linear-gradient(130deg, var(--ink) 0%, #2d1a50 55%, #4a1942 100%);
+  padding: 50px 4% 46px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 30px;
+}
+.hero-text h1 {
+  font-family: 'Playfair Display'; font-size: 40px;
+  color: #fff; line-height: 1.2;
+}
+.hero-text h1 em { font-style: italic; color: var(--gold); }
+.hero-text p { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.6); }
+.hero-cta {
+  display: inline-block; margin-top: 20px;
+  background: var(--gold); color: #fff;
+  padding: 11px 26px; border-radius: 30px;
+  font-weight: 600; font-size: 14px;
+  text-decoration: none; cursor: pointer;
+  border: none; font-family: 'DM Sans', sans-serif;
+  transition: 0.2s;
+}
+.hero-cta:hover { background: #b8852e; }
+.hero-stats { display: flex; gap: 30px; }
+.stat { text-align: center; }
+.stat-num { font-family: 'Playfair Display'; font-size: 28px; color: #fff; }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+/* ════════════════ FILTERS ════════════════ */
+.filters-wrap {
+  padding: 22px 4% 0;
+  display: flex; gap: 10px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.filters-wrap::-webkit-scrollbar { display: none; }
+.chip {
+  padding: 8px 22px; border-radius: 30px;
+  font-size: 13px; font-weight: 500;
+  border: 1.5px solid var(--border);
+  background: #fff; cursor: pointer;
+  white-space: nowrap; transition: 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.chip:hover:not(.active) { border-color: var(--gold); color: var(--gold); }
+.chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* ════════════════ GRID ════════════════ */
+.main { padding: 24px 4% 70px; }
+.section-title {
+  font-family: 'Playfair Display'; font-size: 28px;
+  color: var(--ink); margin-bottom: 22px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+/* ════════════════ PRODUCT CARD ════════════════ */
+.p-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px; overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.p-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 45px rgba(26,11,46,0.1);
+}
+.p-img-box {
+  position: relative; height: 220px;
+  background: var(--light); overflow: hidden;
+}
+.p-img-box img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.p-card:hover .p-img-box img { transform: scale(1.07); }
+.p-img-box img.loading { opacity: 0; transition: opacity 0.4s; }
+.p-img-box img.loaded { opacity: 1; }
+.img-skeleton {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, #f0ece8 25%, #e8e3de 50%, #f0ece8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.wish-btn {
+  position: absolute; top: 10px; right: 10px;
+  width: 34px; height: 34px;
+  background: #fff; border: none; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  font-size: 14px; color: #ccc; transition: 0.2s;
+  z-index: 2;
+}
+.wish-btn:hover, .wish-btn.active { color: var(--rose); }
+.disc-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--rose); color: #fff;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 9px; border-radius: 7px; z-index: 2;
+}
+.p-body { padding: 14px 16px 16px; }
+.p-brand { font-size: 10px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.p-name {
+  font-size: 14px; font-weight: 600; color: var(--ink);
+  margin: 5px 0 7px; line-height: 1.35;
+  height: 38px; display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.p-rating { font-size: 12px; color: #ffb400; margin-bottom: 9px; }
+.p-rating span { color: var(--muted); font-size: 11px; margin-left: 4px; }
+.p-price { font-size: 18px; font-weight: 700; color: #111; }
+.p-old { font-size: 12px; text-decoration: line-through; color: #bbb; margin-left: 6px; font-weight: 400; }
+.p-actions { display: flex; gap: 8px; margin-top: 13px; }
+.btn-cart {
+  flex: 1; background: var(--ink); color: #fff;
+  border: none; border-radius: 9px;
+  padding: 10px 0; font-size: 12px; font-weight: 600;
+  cursor: pointer; display: flex; align-items: center;
+  justify-content: center; gap: 6px;
+  transition: 0.2s; font-family: 'DM Sans', sans-serif;
+}
+.btn-cart:hover { background: #2d1a50; }
+.btn-cart.added { background: #16a34a; }
+.btn-buy {
+  flex: 1; background: var(--light); color: var(--ink);
+  border: 1.5px solid var(--border);
+  border-radius: 9px; padding: 10px 0;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: 0.2s; font-family: 'DM Sans', sans-serif;
+}
+.btn-buy:hover { background: var(--border); }
+
+/* ════════════════ SIDE PANEL ════════════════ */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 2000; opacity: 0;
+  pointer-events: none; transition: 0.25s;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+.side-panel {
+  position: fixed; right: 0; top: 0; height: 100vh;
+  width: 370px; max-width: 93vw;
+  background: #fff; z-index: 2001;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+}
+.side-panel.open { transform: translateX(0); }
+.panel-head {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.panel-head h2 { font-family: 'Playfair Display'; font-size: 20px; }
+.panel-close {
+  background: none; border: none; font-size: 18px;
+  cursor: pointer; color: #999; padding: 4px;
+}
+.panel-body {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.panel-empty { text-align: center; padding: 50px 20px; color: var(--muted); }
+.panel-empty i { font-size: 42px; color: #ddd; display: block; margin-bottom: 12px; }
+.panel-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px; background: var(--light);
+  border-radius: 13px;
+}
+.panel-item img {
+  width: 64px; height: 64px;
+  object-fit: cover; border-radius: 9px; flex-shrink: 0;
+}
+.pi-info { flex: 1; min-width: 0; }
+.pi-brand { font-size: 10px; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+.pi-name { font-size: 12px; font-weight: 600; color: var(--ink); margin: 3px 0 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pi-price { font-size: 15px; font-weight: 700; }
+.pi-qty { display: flex; align-items: center; gap: 8px; margin-top: 7px; }
+.qty-btn {
+  width: 26px; height: 26px; border-radius: 7px;
+  border: 1.5px solid var(--border); background: #fff;
+  cursor: pointer; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Sans', sans-serif; transition: 0.15s;
+}
+.qty-btn:hover { border-color: var(--ink); }
+.qty-num { font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; }
+.pi-remove {
+  background: none; border: none; color: #ccc;
+  cursor: pointer; font-size: 14px; padding: 2px;
+  flex-shrink: 0; transition: 0.15s;
+}
+.pi-remove:hover { color: var(--rose); }
+.panel-foot {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+.total-row {
+  display: flex; justify-content: space-between;
+  font-size: 16px; font-weight: 700; margin-bottom: 13px;
+}
+.checkout-btn {
+  width: 100%; background: var(--ink); color: #fff;
+  border: none; padding: 14px;
+  border-radius: 11px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: 0.2s;
+}
+.checkout-btn:hover { background: #2d1a50; }
+.wish-move-btn {
+  margin-top: 7px; background: var(--ink); color: #fff;
+  border: none; padding: 6px 13px;
+  border-radius: 7px; font-size: 11px; font-weight: 600;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+}
+
+/* ════════════════ MODAL ════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.52);
+  z-index: 3000; display: flex;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: 0.25s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: #fff; border-radius: 22px;
+  padding: 38px 34px; width: 390px; max-width: 92vw;
+  transform: translateY(18px); transition: 0.3s;
+  position: relative;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 16px; right: 18px;
+  background: none; border: none; font-size: 18px;
+  cursor: pointer; color: #aaa;
+}
+.modal h2 { font-family: 'Playfair Display'; font-size: 27px; color: var(--ink); }
+.modal p { font-size: 13px; color: var(--muted); margin: 5px 0 24px; }
+.form-group { margin-bottom: 15px; }
+.form-group label {
+  display: block; font-size: 12px; font-weight: 600;
+  color: var(--ink); margin-bottom: 6px;
+}
+.form-group input {
+  width: 100%; padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 11px; font-size: 14px;
+  font-family: 'DM Sans', sans-serif; outline: none;
+  transition: 0.2s; color: #222;
+}
+.form-group input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,151,58,0.1);
+}
+.modal-submit {
+  width: 100%; background: var(--ink); color: #fff;
+  border: none; padding: 14px;
+  border-radius: 11px; font-size: 14px; font-weight: 600;
+  cursor: pointer; margin-top: 4px;
+  font-family: 'DM Sans', sans-serif; transition: 0.2s;
+}
+.modal-submit:hover { background: #2d1a50; }
+.modal-switch {
+  text-align: center; margin-top: 16px;
+  font-size: 13px; color: var(--muted);
+}
+.modal-switch a {
+  color: var(--gold); font-weight: 600;
+  cursor: pointer; text-decoration: none;
+}
+
+/* ════════════════ CHECKOUT OVERLAY ════════════════ */
+.checkout-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 4000; display: flex;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: 0.3s;
+}
+.checkout-overlay.open { opacity: 1; pointer-events: all; }
+
+.checkout-modal {
+  background: var(--cream); border-radius: 24px;
+  width: 520px; max-width: 95vw;
+  max-height: 90vh; overflow-y: auto;
+  transform: translateY(20px) scale(0.97); transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+.checkout-overlay.open .checkout-modal { transform: translateY(0) scale(1); }
+
+.co-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: var(--cream); z-index: 10;
+  border-radius: 24px 24px 0 0;
+}
+.co-header-logo { font-family: 'Playfair Display'; font-size: 18px; color: var(--ink); }
+.co-header-logo span { color: var(--gold); }
+.co-close {
+  background: none; border: none; font-size: 18px;
+  cursor: pointer; color: #999; padding: 4px;
+}
+.co-body { padding: 22px 24px; }
+
+/* STEPPER */
+.stepper {
+  display: flex; align-items: center; margin-bottom: 28px;
+}
+.step-item { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; }
+.step-dot {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; border: 2px solid #ddd;
+  background: #fff; color: #bbb; transition: all 0.3s; position: relative; z-index: 1;
+}
+.step-dot.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.step-dot.done { background: #16a34a; color: #fff; border-color: #16a34a; }
+.step-label { font-size: 10px; color: #bbb; font-weight: 600; text-align: center; }
+.step-label.active { color: var(--ink); }
+.step-label.done { color: #16a34a; }
+.step-line { flex: 1; height: 2px; background: #eee; margin-bottom: 16px; transition: background 0.3s; }
+.step-line.done { background: #16a34a; }
+
+/* STEP SCREENS */
+.co-screen { display: none; animation: coFade 0.3s ease; }
+.co-screen.active { display: block; }
+@keyframes coFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.co-title {
+  font-family: 'Playfair Display'; font-size: 20px;
+  color: var(--ink); margin-bottom: 16px;
+}
+
+/* ADDRESS */
+.addr-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.addr-card {
+  border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 13px 15px; cursor: pointer; transition: all 0.2s;
+  background: #fff; position: relative;
+}
+.addr-card.selected { border-color: var(--ink); background: #faf8ff; }
+.addr-card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.addr-tag {
+  font-size: 9px; font-weight: 700; padding: 2px 7px;
+  border-radius: 5px; text-transform: uppercase; letter-spacing: 0.5px;
+  background: var(--light); color: var(--ink);
+}
+.addr-name { font-size: 13px; font-weight: 600; }
+.addr-detail { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.addr-radio {
+  position: absolute; top: 13px; right: 13px;
+  width: 17px; height: 17px; border-radius: 50%;
+  border: 2px solid #ddd; background: #fff; transition: all 0.2s;
+}
+.addr-card.selected .addr-radio { border-color: var(--ink); background: var(--ink); }
+.addr-card.selected .addr-radio::after {
+  content: ''; display: block; width: 5px; height: 5px;
+  background: #fff; border-radius: 50%; margin: 4px auto;
+}
+
+.add-addr-btn {
+  border: 1.5px dashed var(--border); border-radius: 12px;
+  padding: 11px; text-align: center; cursor: pointer;
+  color: var(--gold); font-size: 13px; font-weight: 600;
+  background: transparent; width: 100%; transition: 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.add-addr-btn:hover { background: #fffbf4; border-color: var(--gold); }
+
+.addr-form-wrap {
+  background: var(--light); border-radius: 12px;
+  padding: 14px; margin: 10px 0; display: none;
+}
+.addr-form-wrap.show { display: block; }
+.af-row { display: flex; gap: 10px; }
+.af-group { margin-bottom: 10px; flex: 1; }
+.af-group label { display: block; font-size: 11px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.af-group input, .af-group select {
+  width: 100%; padding: 9px 12px;
+  border: 1.5px solid var(--border); border-radius: 9px;
+  font-size: 13px; font-family: 'DM Sans', sans-serif;
+  outline: none; background: #fff; color: #222; transition: 0.2s;
+}
+.af-group input:focus, .af-group select:focus { border-color: var(--gold); }
+
+/* ORDER SUMMARY */
+.sum-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; margin-bottom: 12px;
+}
+.sum-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-bottom: 1px solid var(--border);
+}
+.sum-item:last-child { border-bottom: none; }
+.sum-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+.si-info { flex: 1; min-width: 0; }
+.si-brand { font-size: 9px; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+.si-name { font-size: 12px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.si-qty { font-size: 11px; color: var(--muted); }
+.si-price { font-size: 14px; font-weight: 700; flex-shrink: 0; }
+
+.price-box { background: var(--light); border-radius: 12px; padding: 13px 15px; margin-bottom: 14px; }
+.pr-row { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; color: var(--muted); }
+.pr-row.savings { color: #16a34a; }
+.pr-row.total { color: var(--ink); font-weight: 700; font-size: 15px; border-top: 1px solid var(--border); margin-top: 7px; padding-top: 9px; }
+
+.deliver-to {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 11px; padding: 11px 14px; margin-bottom: 14px;
+}
+.deliver-to-label { font-size: 9px; font-weight: 700; color: var(--gold); text-transform: uppercase; margin-bottom: 3px; }
+
+/* PAYMENT */
+.pay-methods { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.pay-opt {
+  border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 13px 15px; cursor: pointer; transition: all 0.2s;
+  background: #fff; display: flex; align-items: center; gap: 12px;
+}
+.pay-opt.selected { border-color: var(--ink); background: #faf8ff; }
+.pay-icon-box {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.pay-icon-box.upi { background: #e8f5f0; }
+.pay-icon-box.cod { background: #fef3e8; }
+.pay-opt-info { flex: 1; }
+.pay-opt-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.pay-opt-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.pay-radio-dot {
+  width: 17px; height: 17px; border-radius: 50%;
+  border: 2px solid #ddd; transition: all 0.2s; flex-shrink: 0;
+}
+.pay-opt.selected .pay-radio-dot { border-color: var(--ink); background: var(--ink); box-shadow: inset 0 0 0 3px #fff; }
+
+.upi-section { margin-top: 10px; display: none; }
+.upi-section.show { display: block; }
+.upi-apps { display: flex; gap: 8px; margin-bottom: 10px; }
+.upi-app-btn {
+  flex: 1; padding: 8px; border: 1.5px solid var(--border);
+  border-radius: 8px; text-align: center; font-size: 11px;
+  font-weight: 600; cursor: pointer; background: #fff;
+  transition: 0.2s; color: #333;
+  font-family: 'DM Sans', sans-serif;
+}
+.upi-app-btn:hover, .upi-app-btn.sel { border-color: var(--ink); background: var(--light); }
+.upi-id-inp {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+  border-radius: 9px; font-size: 13px; font-family: 'DM Sans', sans-serif;
+  outline: none; color: #222; background: #fff;
+}
+.upi-id-inp:focus { border-color: var(--gold); }
+
+/* BUTTONS */
+.co-cta {
+  width: 100%; background: var(--ink); color: #fff;
+  border: none; padding: 13px; border-radius: 11px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: 0.2s; margin-top: 6px;
+}
+.co-cta:hover { background: #2d1a50; }
+.co-cta.green { background: #16a34a; }
+.co-cta.green:hover { background: #15803d; }
+.co-back {
+  background: none; border: none; color: var(--muted);
+  font-size: 13px; cursor: pointer; padding: 8px 0 14px;
+  display: flex; align-items: center; gap: 4px;
+  font-family: 'DM Sans', sans-serif;
+}
+.co-back:hover { color: var(--ink); }
+
+/* SUCCESS */
+.success-wrap { text-align: center; padding: 10px 0 20px; }
+.success-circle {
+  width: 70px; height: 70px; border-radius: 50%;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px; font-size: 30px; color: #fff;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+.success-title { font-family: 'Playfair Display'; font-size: 24px; color: var(--ink); margin-bottom: 6px; }
+.success-sub { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.order-id-pill {
+  display: inline-block; margin-bottom: 16px;
+  background: var(--light); border: 1.5px dashed var(--border);
+  padding: 8px 20px; border-radius: 9px;
+  font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: 1px;
+}
+.delivery-track { display: flex; align-items: center; justify-content: center; margin: 14px 0; }
+.dt-step { text-align: center; }
+.dt-dot {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; margin: 0 auto 4px;
+  background: #16a34a; color: #fff;
+}
+.dt-dot.pending { background: var(--light); color: var(--muted); border: 1.5px solid var(--border); }
+.dt-label { font-size: 9px; color: var(--muted); font-weight: 600; }
+.dt-line { width: 22px; height: 2px; background: #eee; margin: 0 2px 14px; }
+.dt-line.done { background: #16a34a; }
+
+/* SUCCESS ACTIONS */
+.success-actions { display: flex; gap: 10px; margin-top: 14px; }
+.sa-btn {
+  flex: 1; padding: 12px; border-radius: 11px;
+  font-size: 13px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; cursor: pointer; transition: 0.2s;
+}
+.sa-primary { background: var(--ink); color: #fff; border: none; }
+.sa-primary:hover { background: #2d1a50; }
+.sa-secondary { background: var(--light); color: var(--ink); border: 1.5px solid var(--border); }
+.sa-secondary:hover { background: var(--border); }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(70px);
+  background: var(--ink); color: #fff;
+  padding: 12px 26px; border-radius: 30px;
+  font-size: 13px; font-weight: 500;
+  z-index: 9999; transition: transform 0.3s ease;
+  white-space: nowrap; pointer-events: none;
+  box-shadow: 0 8px 25px rgba(26,11,46,0.25);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 700px) {
+  header { padding: 0 4%; gap: 10px; }
+  .hdr-btn span { display: none; }
+  .hero { padding: 32px 4% 30px; }
+  .hero-text h1 { font-size: 28px; }
+  .hero-stats { display: none; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+  .checkout-modal { border-radius: 18px; }
+  .co-body { padding: 16px; }
+  .af-row { flex-direction: column; gap: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ HEADER ════ -->
+<header>
+  <a class="logo" href="#">Aura <span>Beauty</span></a>
+  <div class="search-wrap">
+    <i class="fa fa-search s-icon"></i>
+    <input type="text" id="searchInput" placeholder="Search skincare, lipstick, moisturizer…"
+      oninput="handleSearch(this.value)"
+      onkeydown="if(event.key==='Enter') doSearch()">
+    <button class="clear-btn" id="clearBtn" onclick="clearSearch()"><i class="fa fa-xmark"></i></button>
+    <div class="suggestions" id="suggestions">
+      <div class="sug-header">
+        <span>Suggestions</span>
+        <span id="sugCount" style="color:var(--muted);font-size:11px;"></span>
+      </div>
+      <div class="sug-list" id="sugList"></div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <button class="icon-btn" onclick="openPanel('wish')" title="Wishlist">
+      <i class="fa-regular fa-heart"></i>
+      <span class="badge" id="wBadge">0</span>
+    </button>
+    <button class="icon-btn" onclick="openPanel('cart')" title="Cart">
+      <i class="fa fa-bag-shopping"></i>
+      <span class="badge" id="cBadge">0</span>
+    </button>
+    <button class="hdr-btn" onclick="openModal('login')">
+      <i class="fa fa-arrow-right-to-bracket"></i> <span>Login</span>
+    </button>
+    <button class="hdr-btn hdr-btn-fill" onclick="openModal('register')">
+      <i class="fa fa-user-plus"></i> <span>Register</span>
+    </button>
+  </div>
+</header>
+
+<!-- ════ HERO ════ -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>Glow Up with<br><em>Authentic Beauty</em></h1>
+    <p>Real Indian brands. Honest prices. Delivered fast.</p>
+    <button class="hero-cta" onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">
+      Shop Now &nbsp;<i class="fa fa-arrow-right" style="font-size:11px"></i>
+    </button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
+    <div class="stat"><div class="stat-num">50K+</div><div class="stat-label">Customers</div></div>
+    <div class="stat"><div class="stat-num">4.8★</div><div class="stat-label">Avg Rating</div></div>
+  </div>
+</div>
+
+<!-- ════ FILTERS ════ -->
+<div class="filters-wrap" id="filterBar">
+  <div class="chip active" onclick="filterBy('all',this)">All Products</div>
+  <div class="chip" onclick="filterBy('skincare',this)">Skincare</div>
+  <div class="chip" onclick="filterBy('makeup',this)">Makeup</div>
+  <div class="chip" onclick="filterBy('haircare',this)">Hair Care</div>
+  <div class="chip" onclick="filterBy('sunscreen',this)">Sunscreen</div>
+  <div class="chip" onclick="filterBy('bodycare',this)">Body Care</div>
+</div>
+
+<!-- ════ MAIN GRID ════ -->
+<div class="main">
+  <div class="section-title" id="sectionTitle">Explore Collection</div>
+  <div class="grid" id="productGrid"></div>
+</div>
+
+<!-- PANEL OVERLAY -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+
+<!-- CART PANEL -->
+<div class="side-panel" id="cartPanel">
+  <div class="panel-head">
+    <h2>🛍️ My Cart</h2>
+    <button class="panel-close" onclick="closePanel()"><i class="fa fa-xmark"></i></button>
+  </div>
+  <div class="panel-body" id="cartBody"></div>
+  <div class="panel-foot" id="cartFoot" style="display:none;">
+    <div class="total-row">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout('cart')">
+      <i class="fa fa-lock" style="font-size:12px"></i> &nbsp;Proceed to Checkout
+    </button>
+  </div>
+</div>
+
+<!-- WISHLIST PANEL -->
+<div class="side-panel" id="wishPanel">
+  <div class="panel-head">
+    <h2>❤️ Wishlist</h2>
+    <button class="panel-close" onclick="closePanel()"><i class="fa fa-xmark"></i></button>
+  </div>
+  <div class="panel-body" id="wishBody"></div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal" onclick="if(event.target===this)closeModal('login')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')"><i class="fa fa-xmark"></i></button>
+    <h2>Welcome Back</h2>
+    <p>Login to your Aura Beauty account</p>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="loginEmail" placeholder="you@email.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="Enter your password">
+    </div>
+    <button class="modal-submit" onclick="doLogin()">Login →</button>
+    <div class="modal-switch">New here? <a onclick="switchModal('login','register')">Create Account</a></div>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="registerModal" onclick="if(event.target===this)closeModal('register')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('register')"><i class="fa fa-xmark"></i></button>
+    <h2>Join Aura Beauty</h2>
+    <p>Create your account and start glowing</p>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="regName" placeholder="Priya Sharma">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="regEmail" placeholder="you@email.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="regPass" placeholder="Min 6 characters">
+    </div>
+    <button class="modal-submit" onclick="doRegister()">Create Account →</button>
+    <div class="modal-switch">Already have an account? <a onclick="switchModal('register','login')">Login</a></div>
+  </div>
+</div>
+
+<!-- ════ CHECKOUT OVERLAY ════ -->
+<div class="checkout-overlay" id="checkoutOverlay" onclick="if(event.target===this)closeCheckout()">
+  <div class="checkout-modal">
+
+    <!-- Header -->
+    <div class="co-header">
+      <div class="co-header-logo">Aura <span>Beauty</span> &mdash; Checkout</div>
+      <button class="co-close" onclick="closeCheckout()"><i class="fa fa-xmark"></i></button>
+    </div>
+
+    <div class="co-body">
+
+      <!-- STEPPER -->
+      <div class="stepper" id="coStepper">
+        <div class="step-item">
+          <div class="step-dot active" id="cosd1">1</div>
+          <div class="step-label active" id="cosl1">Address</div>
+        </div>
+        <div class="step-line" id="coline1"></div>
+        <div class="step-item">
+          <div class="step-dot" id="cosd2">2</div>
+          <div class="step-label" id="cosl2">Summary</div>
+        </div>
+        <div class="step-line" id="coline2"></div>
+        <div class="step-item">
+          <div class="step-dot" id="cosd3">3</div>
+          <div class="step-label" id="cosl3">Payment</div>
+        </div>
+        <div class="step-line" id="coline3"></div>
+        <div class="step-item">
+          <div class="step-dot" id="cosd4">4</div>
+          <div class="step-label" id="cosl4">Done</div>
+        </div>
+      </div>
+
+      <!-- STEP 1: ADDRESS -->
+      <div class="co-screen active" id="coscreen1">
+        <div class="co-title">Delivery Address</div>
+        <div class="addr-list" id="addrList"></div>
+        <button class="add-addr-btn" onclick="toggleAddForm()">+ Add New Address</button>
+        <div class="addr-form-wrap" id="addrFormWrap">
+          <div class="af-row">
+            <div class="af-group"><label>Full Name</label><input type="text" id="afn" placeholder="Priya Sharma"></div>
+            <div class="af-group"><label>Phone</label><input type="text" id="aph" placeholder="9876543210"></div>
+          </div>
+          <div class="af-group"><label>House / Flat / Street</label><input type="text" id="aad" placeholder="12, MG Road, Flat 3A"></div>
+          <div class="af-row">
+            <div class="af-group"><label>City</label><input type="text" id="acity" placeholder="Chennai"></div>
+            <div class="af-group"><label>State</label>
+              <select id="astate">
+                <option>Tamil Nadu</option><option>Karnataka</option><option>Maharashtra</option>
+                <option>Delhi</option><option>Telangana</option><option>Kerala</option>
+                <option>Gujarat</option><option>Rajasthan</option><option>West Bengal</option>
+              </select>
+            </div>
+            <div class="af-group"><label>Pincode</label><input type="text" id="apin" placeholder="600001"></div>
+          </div>
+          <div class="af-row">
+            <div class="af-group"><label>Address Type</label>
+              <select id="atype"><option>Home</option><option>Work</option><option>Other</option></select>
+            </div>
+          </div>
+          <button class="co-cta" style="margin-top:4px;" onclick="saveNewAddress()">Save Address</button>
+        </div>
+        <button class="co-cta" style="margin-top:12px;" onclick="coGoStep(2)">Continue to Summary →</button>
+      </div>
+
+      <!-- STEP 2: ORDER SUMMARY -->
+      <div class="co-screen" id="coscreen2">
+        <button class="co-back" onclick="coGoStep(1)">← Back</button>
+        <div class="co-title">Order Summary</div>
+        <div class="deliver-to" id="coDeliverTo"></div>
+        <div class="sum-card" id="coSumItems"></div>
+        <div class="price-box" id="coPriceBox"></div>
+        <button class="co-cta" onclick="coGoStep(3)">Proceed to Payment →</button>
+      </div>
+
+      <!-- STEP 3: PAYMENT -->
+      <div class="co-screen" id="coscreen3">
+        <button class="co-back" onclick="coGoStep(2)">← Back</button>
+        <div class="co-title">Payment</div>
+        <div class="pay-methods">
+          <div class="pay-opt selected" id="coPayUPI" onclick="coSelectPay('upi')">
+            <div class="pay-icon-box upi">💳</div>
+            <div class="pay-opt-info">
+              <div class="pay-opt-name">UPI Payment</div>
+              <div class="pay-opt-desc">GPay, PhonePe, Paytm or any UPI ID</div>
+            </div>
+            <div class="pay-radio-dot" id="coprUPI"></div>
+          </div>
+          <div class="upi-section show" id="coUpiSec">
+            <div class="upi-apps">
+              <button class="upi-app-btn sel" id="coapp0" onclick="coSelApp(0,'GPay')">GPay</button>
+              <button class="upi-app-btn" id="coapp1" onclick="coSelApp(1,'PhonePe')">PhonePe</button>
+              <button class="upi-app-btn" id="coapp2" onclick="coSelApp(2,'Paytm')">Paytm</button>
+              <button class="upi-app-btn" id="coapp3" onclick="coSelApp(3,'Other')">Other</button>
+            </div>
+            <input class="upi-id-inp" id="coUpiId" placeholder="Enter UPI ID (e.g. priya@gpay)" type="text">
+          </div>
+          <div class="pay-opt" id="coPayCOD" onclick="coSelectPay('cod')">
+            <div class="pay-icon-box cod">💵</div>
+            <div class="pay-opt-info">
+              <div class="pay-opt-name">Cash on Delivery</div>
+              <div class="pay-opt-desc">Pay when your order arrives</div>
+            </div>
+            <div class="pay-radio-dot" id="coprCOD"></div>
+          </div>
+        </div>
+        <div class="price-box" id="coPaySummary"></div>
+        <button class="co-cta green" onclick="coPlaceOrder()">
+          <i class="fa fa-lock" style="font-size:12px;margin-right:6px;"></i>Place Order
+        </button>
+      </div>
+
+      <!-- STEP 4: SUCCESS -->
+      <div class="co-screen" id="coscreen4">
+        <div class="success-wrap">
+          <div class="success-circle">✓</div>
+          <div class="success-title">Order Placed! 🎉</div>
+          <div class="success-sub">Thank you for shopping with Aura Beauty.<br>Your order is confirmed and on its way!</div>
+          <div class="order-id-pill" id="coOrderId">Order #AB-000000</div>
+          <div class="delivery-track">
+            <div class="dt-step"><div class="dt-dot">✓</div><div class="dt-label">Confirmed</div></div>
+            <div class="dt-line done"></div>
+            <div class="dt-step"><div class="dt-dot pending">📦</div><div class="dt-label">Packing</div></div>
+            <div class="dt-line"></div>
+            <div class="dt-step"><div class="dt-dot pending">🚚</div><div class="dt-label">Shipped</div></div>
+            <div class="dt-line"></div>
+            <div class="dt-step"><div class="dt-dot pending">🏠</div><div class="dt-label">Delivered</div></div>
+          </div>
+          <div class="price-box" id="coFinalSummary" style="text-align:left;"></div>
+          <div class="success-actions">
+            <button class="sa-btn sa-secondary" onclick="closeCheckout()">
+              <i class="fa fa-arrow-left" style="font-size:11px;margin-right:4px;"></i>Shop More
+            </button>
+            <button class="sa-btn sa-primary" onclick="closeCheckout()">
+              Track Order <i class="fa fa-arrow-right" style="font-size:11px;margin-left:4px;"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /co-body -->
+  </div><!-- /checkout-modal -->
+</div><!-- /checkout-overlay -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════
+   PRODUCTS
+═══════════════════════════════════════ */
+const products = [
+  { id:1,  cat:'skincare',  brand:'Himalaya',    name:'Himalaya Purifying Neem Face Wash 200ml',                price:149, old:190,  rating:4.5, reviews:12840, img:'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=500&q=80' },
+  { id:2,  cat:'skincare',  brand:'Mamaearth',   name:'Mamaearth Vitamin C Face Cream with Turmeric',           price:349, old:499,  rating:4.4, reviews:8932,  img:'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80' },
+  { id:3,  cat:'skincare',  brand:'Cetaphil',    name:'Cetaphil Moisturising Cream 250g for Dry Skin',          price:585, old:750,  rating:4.7, reviews:15200, img:'https://images.unsplash.com/photo-1617897903246-719242758050?w=500&q=80' },
+  { id:4,  cat:'skincare',  brand:'Plum',        name:'Plum 10% Niacinamide Serum with 1% Zinc',               price:545, old:699,  rating:4.6, reviews:6720,  img:'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&q=80' },
+  { id:5,  cat:'skincare',  brand:'Dot & Key',   name:'Dot & Key Watermelon Hyaluronic Hydrating Serum',       price:575, old:799,  rating:4.3, reviews:4510,  img:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80' },
+  { id:6,  cat:'skincare',  brand:'The Derma Co',name:'The Derma Co 1% Salicylic Acid Face Wash',              price:299, old:399,  rating:4.5, reviews:9800,  img:'https://images.unsplash.com/photo-1631390518882-b86dbc0b4e05?w=500&q=80' },
+  { id:7,  cat:'makeup',   brand:'Lakme',        name:'Lakme 9to5 Primer + Matte Liquid Lip Color – Red Alert',price:249, old:399,  rating:4.4, reviews:7600,  img:'https://images.unsplash.com/photo-1586495777744-4e6232bf2661?w=500&q=80' },
+  { id:8,  cat:'makeup',   brand:'Maybelline',   name:'Maybelline Fit Me Matte + Poreless Foundation SPF22',   price:299, old:550,  rating:4.5, reviews:20100, img:'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=500&q=80' },
+  { id:9,  cat:'makeup',   brand:'SUGAR',        name:'SUGAR Cosmetics Smudge Me Not Liquid Lipstick',         price:499, old:799,  rating:4.6, reviews:5400,  img:'https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=500&q=80' },
+  { id:10, cat:'makeup',   brand:'Faces Canada', name:'Faces Canada HD Blush – Peach Bloom 04',                price:349, old:550,  rating:4.3, reviews:3200,  img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80' },
+  { id:11, cat:'makeup',   brand:'Swiss Beauty', name:'Swiss Beauty Ultra Smooth Matte Kajal – Black',         price:149, old:225,  rating:4.5, reviews:11000, img:'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=500&q=80' },
+  { id:12, cat:'makeup',   brand:'Colorbar',     name:'Colorbar Full Cover Makeup Foundation SPF 20',          price:699, old:999,  rating:4.2, reviews:2800,  img:'https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=500&q=80' },
+  { id:13, cat:'haircare', brand:'Mamaearth',    name:'Mamaearth Onion Hair Oil for Hair Fall Control 250ml',  price:349, old:499,  rating:4.3, reviews:18700, img:'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=500&q=80' },
+  { id:14, cat:'haircare', brand:'Indulekha',    name:'Indulekha Bringha Shampoo for Hair Fall 200ml',         price:249, old:325,  rating:4.5, reviews:9400,  img:'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=500&q=80' },
+  { id:15, cat:'haircare', brand:'WOW',          name:'WOW Skin Science Apple Cider Vinegar Shampoo 300ml',    price:349, old:499,  rating:4.4, reviews:14200, img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80' },
+  { id:16, cat:'haircare', brand:'Dove',         name:'Dove Intense Repair Conditioner for Damaged Hair 180ml',price:199, old:275,  rating:4.6, reviews:25600, img:'https://images.unsplash.com/photo-1585751119414-ef2636f8aede?w=500&q=80' },
+  { id:17, cat:'sunscreen',brand:'Minimalist',   name:'Minimalist SPF 50 Sunscreen with Hyaluronic Acid 50ml', price:349, old:499,  rating:4.7, reviews:16800, img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&q=80' },
+  { id:18, cat:'sunscreen',brand:'Neutrogena',   name:'Neutrogena Ultra Sheer Dry-Touch Sunscreen SPF 50+',    price:499, old:699,  rating:4.5, reviews:8900,  img:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80' },
+  { id:19, cat:'sunscreen',brand:'Lotus Herbals',name:'Lotus Herbals Safe Sun UV Screen Matte Gel SPF 50',     price:325, old:450,  rating:4.3, reviews:7200,  img:'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&q=80' },
+  { id:20, cat:'sunscreen',brand:"Re'equil",     name:"Re'equil Oxybenzone Free Sunscreen SPF 50 PA++++",      price:595, old:799,  rating:4.6, reviews:5300,  img:'https://images.unsplash.com/photo-1614975059251-992f11792b9f?w=500&q=80' },
+  { id:21, cat:'bodycare', brand:'Nivea',        name:'Nivea Soft Light Moisturising Cream 200ml',             price:249, old:320,  rating:4.6, reviews:32000, img:'https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=500&q=80' },
+  { id:22, cat:'bodycare', brand:'Vaseline',     name:'Vaseline Intensive Care Aloe Soothe Body Lotion 400ml', price:349, old:450,  rating:4.5, reviews:18500, img:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80' },
+  { id:23, cat:'bodycare', brand:'Mamaearth',    name:'Mamaearth Ubtan Body Lotion with Turmeric & Saffron',   price:279, old:399,  rating:4.3, reviews:6700,  img:'https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=500&q=80' },
+  { id:24, cat:'bodycare', brand:'Biotique',     name:'Biotique Bio Honey Body Wash 200ml Deep Moisturising',  price:199, old:280,  rating:4.4, reviews:9100,  img:'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80' },
+];
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let cart = {};
+let wishlist = new Set();
+
+/* ═══ HELPERS ═══ */
+function disc(p)  { return Math.round((p.old - p.price) / p.old * 100); }
+function stars(r) { return '★'.repeat(Math.floor(r)) + '☆'.repeat(5 - Math.floor(r)); }
+function fmt(n)   { return n >= 1000 ? (n/1000).toFixed(1) + 'k' : n; }
+
+/* ═══════════════════════════════════════
+   RENDER GRID
+═══════════════════════════════════════ */
+function renderGrid(list) {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  if (!list.length) {
+    grid.innerHTML = '<p style="color:var(--muted);padding:30px;font-size:15px;">No products found.</p>';
+    return;
+  }
+  list.forEach(p => {
+    const inCart = cart[p.id] && cart[p.id].qty > 0;
+    const inWish = wishlist.has(p.id);
+    const d = disc(p);
+    grid.innerHTML += `
+    <div class="p-card" id="card${p.id}">
+      <div class="p-img-box">
+        <div class="img-skeleton" id="sk${p.id}"></div>
+        <img src="${p.img}" alt="${p.name}" class="loading" loading="lazy"
+          onload="imgLoaded(${p.id})" onerror="imgError(${p.id})">
+        <button class="wish-btn ${inWish?'active':''}" id="wb${p.id}" onclick="toggleWish(${p.id})">
+          <i class="${inWish?'fa-solid':'fa-regular'} fa-heart"></i>
+        </button>
+        ${d>0 ? `<div class="disc-badge">${d}% OFF</div>` : ''}
+      </div>
+      <div class="p-body">
+        <div class="p-brand">${p.brand}</div>
+        <div class="p-name" title="${p.name}">${p.name}</div>
+        <div class="p-rating">${stars(p.rating)} <span>${p.rating} (${fmt(p.reviews)})</span></div>
+        <div class="p-price">₹${p.price} <span class="p-old">₹${p.old}</span></div>
+        <div class="p-actions">
+          <button class="btn-cart ${inCart?'added':''}" id="cb${p.id}" onclick="addToCart(${p.id})">
+            <i class="fa fa-${inCart?'check':'cart-plus'}"></i> ${inCart?'Added':'Add to Cart'}
+          </button>
+          <button class="btn-buy" onclick="buyNow(${p.id})">Buy Now</button>
+        </div>
+      </div>
+    </div>`;
+  });
+}
+
+function imgLoaded(id) {
+  const sk = document.getElementById('sk'+id);
+  const card = document.getElementById('card'+id);
+  if (sk) sk.style.display = 'none';
+  const img = card ? card.querySelector('img') : null;
+  if (img) img.classList.replace('loading','loaded');
+}
+function imgError(id) {
+  const card = document.getElementById('card'+id);
+  if (!card) return;
+  const img = card.querySelector('img');
+  if (img) { img.src = 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80'; img.classList.replace('loading','loaded'); }
+  const sk = document.getElementById('sk'+id);
+  if (sk) sk.style.display = 'none';
+}
+
+/* ═══ FILTER ═══ */
+function filterBy(cat, el) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const list = cat==='all' ? products : products.filter(p=>p.cat===cat);
+  document.getElementById('sectionTitle').textContent =
+    cat==='all' ? 'Explore Collection' : cat.charAt(0).toUpperCase()+cat.slice(1);
+  renderGrid(list);
+}
+
+/* ═══ SEARCH ═══ */
+function handleSearch(val) {
+  document.getElementById('clearBtn').style.display = val ? 'block' : 'none';
+  const sugBox = document.getElementById('suggestions');
+  if (!val.trim()) { sugBox.style.display = 'none'; return; }
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(val.toLowerCase()) ||
+    p.brand.toLowerCase().includes(val.toLowerCase())
+  );
+  document.getElementById('sugCount').textContent = filtered.length + ' results';
+  if (!filtered.length) {
+    document.getElementById('sugList').innerHTML = `<div class="sug-empty">No results for "<b>${val}</b>"</div>`;
+  } else {
+    document.getElementById('sugList').innerHTML = filtered.slice(0,7).map(p => {
+      const n = p.name; const idx = n.toLowerCase().indexOf(val.toLowerCase());
+      const before = n.slice(0,idx), match = n.slice(idx,idx+val.length), after = n.slice(idx+val.length);
+      return `<div class="sug-item" onclick="selectSuggestion(${p.id})">
+        <i class="fa fa-search"></i>
+        <span>${before}<span class="sug-match">${match}</span>${after}</span>
+      </div>`;
+    }).join('');
+  }
+  sugBox.style.display = 'block';
+}
+
+function doSearch() {
+  const val = document.getElementById('searchInput').value.trim();
+  document.getElementById('suggestions').style.display = 'none';
+  const filtered = val ? products.filter(p =>
+    p.name.toLowerCase().includes(val.toLowerCase()) || p.brand.toLowerCase().includes(val.toLowerCase())
+  ) : products;
+  document.getElementById('sectionTitle').textContent = val ? `Results for "${val}"` : 'Explore Collection';
+  renderGrid(filtered);
+}
+
+function selectSuggestion(id) {
+  const p = products.find(x=>x.id===id); if (!p) return;
+  document.getElementById('searchInput').value = p.name;
+  document.getElementById('suggestions').style.display = 'none';
+  document.getElementById('clearBtn').style.display = 'block';
+  renderGrid([p]);
+  document.getElementById('sectionTitle').textContent = 'Search Result';
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('clearBtn').style.display = 'none';
+  document.getElementById('suggestions').style.display = 'none';
+  document.getElementById('sectionTitle').textContent = 'Explore Collection';
+  renderGrid(products);
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap'))
+    document.getElementById('suggestions').style.display = 'none';
+});
+
+/* ═══ CART ═══ */
+function addToCart(id) {
+  const p = products.find(x=>x.id===id); if (!p) return;
+  if (cart[id]) cart[id].qty++;
+  else cart[id] = {...p, qty:1};
+  updateBadge('cart');
+  toast(`🛍️ ${p.brand} added to cart!`);
+  const btn = document.getElementById('cb'+id);
+  if (btn) { btn.innerHTML='<i class="fa fa-check"></i> Added'; btn.classList.add('added'); }
+}
+
+function removeFromCart(id) {
+  delete cart[id];
+  updateBadge('cart');
+  renderCart();
+  const btn = document.getElementById('cb'+id);
+  if (btn) { btn.innerHTML='<i class="fa fa-cart-plus"></i> Add to Cart'; btn.classList.remove('added'); }
+}
+
+function changeQty(id, delta) {
+  if (!cart[id]) return;
+  cart[id].qty += delta;
+  if (cart[id].qty <= 0) removeFromCart(id);
+  else { updateBadge('cart'); renderCart(); }
+}
+
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  const items = Object.values(cart);
+  if (!items.length) {
+    body.innerHTML = `<div class="panel-empty"><i class="fa fa-bag-shopping"></i><p>Your cart is empty</p></div>`;
+    foot.style.display = 'none'; return;
+  }
+  body.innerHTML = items.map(p=>`
+    <div class="panel-item">
+      <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&q=80'">
+      <div class="pi-info">
+        <div class="pi-brand">${p.brand}</div>
+        <div class="pi-name" title="${p.name}">${p.name}</div>
+        <div class="pi-price">₹${p.price}</div>
+        <div class="pi-qty">
+          <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
+          <span class="qty-num">${p.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${p.id},1)">+</button>
+        </div>
+      </div>
+      <button class="pi-remove" onclick="removeFromCart(${p.id})"><i class="fa fa-xmark"></i></button>
+    </div>`).join('');
+  const total = items.reduce((s,p)=>s+p.price*p.qty,0);
+  document.getElementById('cartTotal').textContent = '₹'+total.toLocaleString('en-IN');
+  foot.style.display = 'block';
+}
+
+/* ═══ WISHLIST ═══ */
+function toggleWish(id) {
+  const p = products.find(x=>x.id===id); if (!p) return;
+  const btn = document.getElementById('wb'+id);
+  if (wishlist.has(id)) {
+    wishlist.delete(id); toast('💔 Removed from wishlist');
+    if (btn) { btn.classList.remove('active'); btn.innerHTML='<i class="fa-regular fa-heart"></i>'; }
+  } else {
+    wishlist.add(id); toast('❤️ Added to wishlist!');
+    if (btn) { btn.classList.add('active'); btn.innerHTML='<i class="fa-solid fa-heart"></i>'; }
+  }
+  updateBadge('wish');
+}
+
+function renderWishlist() {
+  const body = document.getElementById('wishBody');
+  if (!wishlist.size) {
+    body.innerHTML = `<div class="panel-empty"><i class="fa-regular fa-heart"></i><p>Your wishlist is empty</p></div>`;
+    return;
+  }
+  body.innerHTML = [...wishlist].map(id => {
+    const p = products.find(x=>x.id===id);
+    return `
+    <div class="panel-item">
+      <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&q=80'">
+      <div class="pi-info">
+        <div class="pi-brand">${p.brand}</div>
+        <div class="pi-name" title="${p.name}">${p.name}</div>
+        <div class="pi-price">₹${p.price} <span style="font-size:11px;color:#bbb;text-decoration:line-through;font-weight:400;">₹${p.old}</span></div>
+        <button class="wish-move-btn" onclick="moveToCart(${p.id})"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+      </div>
+      <button class="pi-remove" onclick="toggleWish(${id});renderWishlist()"><i class="fa fa-xmark"></i></button>
+    </div>`;
+  }).join('');
+}
+
+function moveToCart(id) { addToCart(id); toggleWish(id); renderWishlist(); }
+
+/* ═══ BADGES ═══ */
+function updateBadge(type) {
+  if (type==='cart') {
+    const n = Object.values(cart).reduce((s,p)=>s+p.qty,0);
+    const b = document.getElementById('cBadge');
+    b.textContent=n; b.style.display=n?'flex':'none';
+  } else {
+    const n = wishlist.size;
+    const b = document.getElementById('wBadge');
+    b.textContent=n; b.style.display=n?'flex':'none';
+  }
+}
+
+/* ═══ PANELS ═══ */
+function openPanel(type) {
+  document.getElementById('overlay').classList.add('open');
+  if (type==='cart') { renderCart(); document.getElementById('cartPanel').classList.add('open'); }
+  else { renderWishlist(); document.getElementById('wishPanel').classList.add('open'); }
+}
+function closePanel() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('cartPanel').classList.remove('open');
+  document.getElementById('wishPanel').classList.remove('open');
+}
+
+/* ═══ LOGIN / REGISTER MODALS ═══ */
+function openModal(type) { document.getElementById(type+'Modal').classList.add('open'); }
+function closeModal(type) { document.getElementById(type+'Modal').classList.remove('open'); }
+function switchModal(from,to) { closeModal(from); openModal(to); }
+
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPass').value;
+  if (!email||!pass) { toast('⚠️ Please fill all fields'); return; }
+  if (!email.includes('@')) { toast('⚠️ Enter a valid email'); return; }
+  closeModal('login');
+  toast(`👋 Welcome back, ${email.split('@')[0]}!`);
+}
+function doRegister() {
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPass').value;
+  if (!name||!email||!pass) { toast('⚠️ Please fill all fields'); return; }
+  if (!email.includes('@')) { toast('⚠️ Enter a valid email'); return; }
+  if (pass.length<6) { toast('⚠️ Password must be at least 6 characters'); return; }
+  closeModal('register');
+  toast(`🎉 Welcome to Aura Beauty, ${name.split(' ')[0]}!`);
+}
+
+/* ═══ TOAST ═══ */
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  clearTimeout(toastTimer);
+  t.textContent = msg; t.classList.add('show');
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+/* ══════════════════════════════════════════════
+   CHECKOUT FLOW
+══════════════════════════════════════════════ */
+let coAddresses = [
+  { id:1, name:'Priya Sharma', phone:'9876543210', line:'12, MG Road, Flat 3A', city:'Chennai', state:'Tamil Nadu', pin:'600001', type:'Home' },
+  { id:2, name:'Priya Sharma', phone:'9876543210', line:'Office Tower B, Anna Salai', city:'Chennai', state:'Tamil Nadu', pin:'600002', type:'Work' },
+];
+let coSelectedAddr = 1;
+let coPayMethod = 'upi';
+let coUpiApp = 'GPay';
+let coCheckoutItems = [];
+let coStep = 1;
+
+function openCheckout(source) {
+  closePanel();
+  if (source === 'cart') {
+    coCheckoutItems = Object.values(cart).map(p=>({...p}));
+  }
+  if (!coCheckoutItems.length) { toast('⚠️ No items to checkout'); return; }
+  coStep = 1;
+  coGoStep(1, true);
+  document.getElementById('checkoutOverlay').classList.add('open');
+  renderCoAddresses();
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('open');
+}
+
+function buyNow(id) {
+  const p = products.find(x=>x.id===id); if (!p) return;
+  coCheckoutItems = [{...p, qty:1}];
+  closePanel();
+  coStep = 1;
+  coGoStep(1, true);
+  document.getElementById('checkoutOverlay').classList.add('open');
+  renderCoAddresses();
+}
+
+function coGoStep(n, skipRender) {
+  if (n===2 && !coSelectedAddr) { toast('⚠️ Please select a delivery address'); return; }
+  for (let i=1;i<=4;i++) {
+    document.getElementById('coscreen'+i).className = 'co-screen'+(i===n?' active':'');
+  }
+  coStep = n;
+  updateCoStepper(n);
+  if (n===2 && !skipRender) renderCoSummary();
+  if (n===3) renderCoPaySummary();
+}
+
+function updateCoStepper(step) {
+  for (let i=1;i<=4;i++) {
+    const dot = document.getElementById('cosd'+i);
+    const lbl = document.getElementById('cosl'+i);
+    dot.className = 'step-dot'+(i<step?' done':i===step?' active':'');
+    lbl.className = 'step-label'+(i<step?' done':i===step?' active':'');
+    if (i<4) document.getElementById('coline'+i).className = 'step-line'+(i<step?' done':'');
+    dot.textContent = i<step ? '✓' : i;
+  }
+}
+
+/* Address */
+function renderCoAddresses() {
+  document.getElementById('addrList').innerHTML = coAddresses.map(a=>`
+    <div class="addr-card ${coSelectedAddr===a.id?'selected':''}" onclick="coSelectAddr(${a.id})">
+      <div class="addr-card-top">
+        <div class="addr-tag">${a.type}</div>
+        <div class="addr-name">${a.name}</div>
+      </div>
+      <div class="addr-detail">${a.line}, ${a.city}, ${a.state} – ${a.pin}</div>
+      <div class="addr-detail" style="margin-top:2px;">📱 ${a.phone}</div>
+      <div class="addr-radio"></div>
+    </div>`).join('');
+}
+
+function coSelectAddr(id) { coSelectedAddr = id; renderCoAddresses(); }
+
+function toggleAddForm() {
+  const f = document.getElementById('addrFormWrap');
+  f.classList.toggle('show');
+}
+
+function saveNewAddress() {
+  const fn   = document.getElementById('afn').value.trim();
+  const ph   = document.getElementById('aph').value.trim();
+  const ad   = document.getElementById('aad').value.trim();
+  const city = document.getElementById('acity').value.trim();
+  const state= document.getElementById('astate').value;
+  const pin  = document.getElementById('apin').value.trim();
+  const type = document.getElementById('atype').value;
+  if (!fn||!ph||!ad||!city||!pin) { toast('⚠️ Please fill all address fields'); return; }
+  const newId = coAddresses.length + 1;
+  coAddresses.push({id:newId,name:fn,phone:ph,line:ad,city,state,pin,type});
+  coSelectedAddr = newId;
+  document.getElementById('addrFormWrap').classList.remove('show');
+  renderCoAddresses();
+  toast('✅ Address saved!');
+}
+
+/* Summary */
+function coGetAddr() { return coAddresses.find(a=>a.id===coSelectedAddr); }
+function coCalcTotal() { return coCheckoutItems.reduce((s,p)=>s+p.price*p.qty,0); }
+function coCalcMRP()   { return coCheckoutItems.reduce((s,p)=>s+Math.round(p.price*1.3)*p.qty,0); }
+function coShipping()  { return coCalcTotal()>499 ? 0 : 49; }
+
+function renderCoSummary() {
+  const addr = coGetAddr();
+  document.getElementById('coDeliverTo').innerHTML = `
+    <div class="deliver-to-label">Delivering to</div>
+    <b>${addr.name}</b> — ${addr.line}, ${addr.city} ${addr.pin}
+    <span style="background:var(--light);padding:1px 6px;border-radius:4px;font-size:9px;font-weight:700;margin-left:4px;">${addr.type}</span>`;
+
+  document.getElementById('coSumItems').innerHTML = coCheckoutItems.map(p=>`
+    <div class="sum-item">
+      <img src="${p.img}" onerror="this.src='https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=80&q=70'" alt="">
+      <div class="si-info">
+        <div class="si-brand">${p.brand}</div>
+        <div class="si-name">${p.name}</div>
+        <div class="si-qty">Qty: ${p.qty}</div>
+      </div>
+      <div class="si-price">₹${(p.price*p.qty).toLocaleString('en-IN')}</div>
+    </div>`).join('');
+
+  const mrp=coCalcMRP(), total=coCalcTotal(), ship=coShipping();
+  document.getElementById('coPriceBox').innerHTML = `
+    <div class="pr-row"><span>MRP Total</span><span>₹${mrp.toLocaleString('en-IN')}</span></div>
+    <div class="pr-row savings"><span>Discount</span><span>−₹${(mrp-total).toLocaleString('en-IN')}</span></div>
+    <div class="pr-row"><span>Delivery</span><span>${ship===0?'<span style="color:#16a34a;font-weight:600;">FREE</span>':'₹'+ship}</span></div>
+    <div class="pr-row total"><span>Total Amount</span><span>₹${(total+ship).toLocaleString('en-IN')}</span></div>`;
+}
+
+function renderCoPaySummary() {
+  const total=coCalcTotal(), ship=coShipping();
+  document.getElementById('coPaySummary').innerHTML = `
+    <div class="pr-row"><span>Items (${coCheckoutItems.reduce((s,p)=>s+p.qty,0)})</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+    <div class="pr-row"><span>Delivery</span><span>${ship===0?'<span style="color:#16a34a;font-weight:600;">FREE</span>':'₹'+ship}</span></div>
+    <div class="pr-row total"><span>Pay Now</span><span>₹${(total+ship).toLocaleString('en-IN')}</span></div>`;
+}
+
+/* Payment */
+function coSelectPay(type) {
+  coPayMethod = type;
+  document.getElementById('coPayUPI').className = 'pay-opt'+(type==='upi'?' selected':'');
+  document.getElementById('coPayCOD').className = 'pay-opt'+(type==='cod'?' selected':'');
+  document.getElementById('coUpiSec').className = 'upi-section'+(type==='upi'?' show':'');
+}
+
+function coSelApp(idx, name) {
+  coUpiApp = name;
+  [0,1,2,3].forEach(i=>{
+    document.getElementById('coapp'+i).classList.toggle('sel', i===idx);
+  });
+}
+
+function coPlaceOrder() {
+  if (coPayMethod==='upi') {
+    const uid = document.getElementById('coUpiId').value.trim();
+    if (!uid) { toast('⚠️ Please enter your UPI ID'); return; }
+  }
+
+  const orderId = 'AB-'+Math.floor(100000+Math.random()*900000);
+  document.getElementById('coOrderId').textContent = 'Order #'+orderId;
+
+  const total=coCalcTotal(), ship=coShipping(), mrp=coCalcMRP();
+  const payLabel = coPayMethod==='upi' ? coUpiApp+' UPI' : 'Cash on Delivery';
+  const addr = coGetAddr();
+
+  document.getElementById('coFinalSummary').innerHTML = `
+    <div class="pr-row"><span>Items</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+    <div class="pr-row savings"><span>You saved</span><span>₹${(mrp-total).toLocaleString('en-IN')}</span></div>
+    <div class="pr-row"><span>Delivery</span><span>${ship===0?'FREE':'₹'+ship}</span></div>
+    <div class="pr-row total"><span>Total Paid</span><span>₹${(total+ship).toLocaleString('en-IN')}</span></div>
+    <div class="pr-row" style="margin-top:6px;"><span>Payment via</span><span style="color:var(--ink);font-weight:600;">${payLabel}</span></div>
+    <div class="pr-row"><span>Deliver to</span><span style="color:var(--ink);font-weight:600;">${addr.city} – ${addr.pin}</span></div>`;
+
+  // Clear cart
+  const orderedIds = coCheckoutItems.map(p=>p.id);
+  orderedIds.forEach(id=>{
+    delete cart[id];
+    const btn = document.getElementById('cb'+id);
+    if (btn) { btn.innerHTML='<i class="fa fa-cart-plus"></i> Add to Cart'; btn.classList.remove('added'); }
+  });
+  updateBadge('cart');
+  coCheckoutItems = [];
+
+  coGoStep(4);
+}
+
+/* ═══ INIT ═══ */
+renderGrid(products);
+</script>
+</body>
+</html>
