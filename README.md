@@ -15,7 +15,7 @@ Aura Beauty is a modern beauty website designed using HTML, CSS, and JavaScript.
 - JavaScript
 
 ## 🌐 Live Demo
-https://manjupriyasekar.github.io/Aura-beauty/
+https://manjupriyasekar.github.io/Aura-beauty/git
 
 ## 📷 Screenshots
 
