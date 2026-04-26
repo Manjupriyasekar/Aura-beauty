@@ -1,23 +1,21 @@
 # Aura Beauty 💄
 
 ## 📌 About
-Aura Beauty is a modern beauty website designed using HTML, CSS, and JavaScript.
+Aura Beauty is a modern beauty website designed using HTML, CSS, and JavaScript. It showcases beauty products with a clean and user-friendly interface.
 
 ## 🚀 Features
-- Responsive design
+- Responsive design for all devices
 - User-friendly interface
 - Beauty product showcase
+- Simple and attractive UI
 
 ## 🛠️ Technologies Used
-- Java
-- Spring Boot
 - HTML
 - CSS
 - JavaScript
-- PostgreSQL
 
 ## 🌐 Live Demo
- https://manjupriyasekar.github.io/Aura-beauty/
+https://manjupriyasekar.github.io/Aura-beauty/
 
 ## 📷 Screenshots
 
